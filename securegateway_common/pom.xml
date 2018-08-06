@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<modelVersion>4.0.0</modelVersion>
+<groupId>org.poondakfai.securegateway.oauthserver</groupId>
+<artifactId>common</artifactId>
+<packaging>jar</packaging>
+<version>1.0-SNAPSHOT</version>
+<name>Oauth2 authorization server common library</name>
+<url>http://localhost</url>
+
+<properties>
+    <spring.version>3.0.5.RELEASE</spring.version>
+    <jdk.version>1.6</jdk.version>
+</properties>
+
+<dependencies>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>3.8.1</version>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+
+<build>
+    <finalName>oauthserver-common</finalName>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.0</version>
+            <configuration>
+                <source>${jdk.version}</source>
+                <target>${jdk.version}</target>
+            </configuration>
+        </plugin>
+
+
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>2.7</version>
+          <executions>
+            <execution>
+              <id>copy-library-to-url_management</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>../../url_management_springboot/url_management/lib</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>target</directory>
+                    <includes>
+                      <include>oauthserver-common.jar</include>
+                    </includes>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+            <execution>
+              <id>copy-library-to-oauth2_springboot</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>../../oauth2_springboot/authentication_server/lib</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>target</directory>
+                    <includes>
+                      <include>oauthserver-common.jar</include>
+                    </includes>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+
+    </plugins>
+</build>
+
+</project>
+
